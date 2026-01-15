@@ -1,52 +1,44 @@
-import java.util.Scanner;
-public class Player
-{
-    Scanner input = new Scanner(System.in);
-    
+public class Player {
     private String name;
     private int age;
     private int money;
-    private double winRate;
-    
-    public Player(String n, int a)
-    {
-        name = n;
-        age = a;
-        money = 1000;
-        if (a<18)
-        {
-            System.out.println("you are too young to play, good bye");
-            System.exit(0);        
+
+    public Player(String name, int age) {
+        this.name = name;
+        this.age = age;
+        this.money = 1000;
+
+        if (age < 18) {
+            System.out.println("You are too young to play. Goodbye.");
+            System.exit(0);
+        }
+        
+        if (age>40) {
+            System.out.println("Welcome unc.");
         }
     }
-    
-    public Player(int a, String n)
-    {
-        name = n;
-        age = a;
-        money = 1000;
-        if (a<18)
-        {
-            System.out.println("you are too young to play, good bye");
-            System.exit(0);        
-        }
+
+    public String getName() {
+        return name;
     }
-    
-    public int getMoney() 
-    {
+
+    public int getAge() {
+        return age;
+    }
+
+    public int getMoney() {
         return money;
     }
-    
-    public void play()
-    {
-        System.out.println("how much would you like to bet?");
-        
-        
-        
-        
-        
+
+    public boolean canBet(int bet) {
+        return bet > 0 && bet <= money;
     }
-    
+
+    public void win(int bet) {
+        money += bet;
     }
-    
-    
+
+    public void lose(int bet) {
+        money -= bet;
+    }
+}
