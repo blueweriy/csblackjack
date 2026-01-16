@@ -25,16 +25,22 @@ public class BlackJack {
             System.out.print("> ");
             String choice = input.nextLine();
 
-            if (choice.equals("money")) {
+            if (choice.toLowercase().equals("money")) {
                 System.out.println("You have $" + player.getMoney());
             }
 
-            else if (choice.equals("quit")) {
-                System.out.println("Goodbye. You leave with $" + player.getMoney());
+            else if (choice.toLowercase().equals("quit")) {
+                System.out.print("Goodbye. You leave with $" + player.getMoney());
+                    if (player.getMoney>1000)
+                        System.out.println(" (Profit of $" + player.getMoney() - 1000 + "). Good job :D");
+                    else if (player.getMoney==1000)
+                        System.out.println(". No gain but at least no loss :)");
+                    else if (player.getMoney<1000)
+                        System.out.println(" (You lost $" + 1000 - player.getMoney() + ") This is not your path");             
                 running = false;
             }
 
-            else if (choice.equals("play")) {
+            else if (choice.toLowercase().equals("play")) {
 
                 if (player.getMoney() <= 0) {
                     System.out.println("You have no money left. Game over.");
