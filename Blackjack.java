@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class BlackJack {
+public class Blackjack {
 
     public static void main(String[] args) {
 
@@ -19,31 +19,36 @@ public class BlackJack {
         boolean running = true;
 
         while (running) {
-
+            if (player.getMoney() <= 0) {
+                    System.out.println("You are now homeless without a dollar to your name. Game over.");
+                    System.exit(0);
+                }
+            
             System.out.println();
             System.out.println("Type: play, money, or quit");
             System.out.print("> ");
             String choice = input.nextLine();
+            
 
-            if (choice.toLowercase().equals("money")) {
+            if (choice.toLowerCase().equals("money")) {
                 System.out.println("You have $" + player.getMoney());
             }
 
-            else if (choice.toLowercase().equals("quit")) {
-                System.out.print("Goodbye. You leave with $" + player.getMoney());
-                    if (player.getMoney>1000)
-                        System.out.println(" (Profit of $" + player.getMoney() - 1000 + "). Good job :D");
-                    else if (player.getMoney==1000)
+            else if (choice.toLowerCase().equals("quit")) {
+                int cmoney = player.getMoney();
+                System.out.print("Goodbye. You leave with $" + cmoney);
+                    if (player.getMoney()>1000)
+                        System.out.println(" (Profit of $" + (cmoney - 1000) + "). Good job :D");
+                    else if (player.getMoney()==1000)
                         System.out.println(". No gain but at least no loss :)");
-                    else if (player.getMoney<1000)
-                        System.out.println(" (You lost $" + 1000 - player.getMoney() + ") This is not your path");             
+                    else if (player.getMoney()<1000)
+                        System.out.println(" (You lost $" + (1000 - cmoney) + ") 99% of all gamblers stop right before their BIG HIT!");             
                 running = false;
             }
 
-            else if (choice.toLowercase().equals("play")) {
-
+            else if (choice.toLowerCase().equals("play")) {
                 if (player.getMoney() <= 0) {
-                    System.out.println("You have no money left. Game over.");
+                    System.out.println("You are now homeless without a dollar to your name. Game over.");
                     running = false;
                 }
 
